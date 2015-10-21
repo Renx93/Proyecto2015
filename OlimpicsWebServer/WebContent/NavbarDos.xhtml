@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:outputScript target="head">     
+
+
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial scale=1"/>
+	<h:outputStylesheet library="css" name="style1.css" />
+	
+	
+	</h:outputScript>
+
+			<h:link outcome="Index">
+				<h:graphicImage name="images/logo.png" style="height:100% !Important; with:auto; float:left;" />
+			</h:link>
+			
+			<h:form rendered="#{not empty usuarioMB.nick}" id="formulario-navbar2" style="float:left; color:white ; margin-left:30%; height:100%; text-align:center;"> <!--  prependId="false"  -->
+								
+			</h:form >
+			
+			
+			<p:panel id="panel1" style="float:right;" rendered="#{not empty usuarioMB.nick}" >
+				<h:form id="formulario-navbar" style="float:right"> <!--  prependId="false"  -->
+					<h:outputText value="Bienvenido #{usuarioMB.nick}" rendered="#{not empty usuarioMB.nick}"/><br/>
+					<h:commandLink rendered="#{not empty usuarioMB.nick}" id="logoutLink" value="Log Out" action="#{usuarioMB.logOut}"></h:commandLink>
+				</h:form>				
+			</p:panel >
+
+				<p:panel id="panel2" rendered="#{empty usuarioMB.nick}" style="float:right;" >
+				<h:form id="Login" >
+					<p:growl id="growl" showDetail="false" />
+
+					<h:outputLabel value="Usuario " for="nick" />  <h:outputText value=" "></h:outputText>  
+					<h:outputText value=" "></h:outputText> 
+					<h:outputText value=" "></h:outputText> 
+					<h:outputText value=" "></h:outputText>      
+					
+					<h:inputText id="nick" class="form-group" value="#{usuarioMB.nick}" required="true" requiredMessage="Campo obligatorio" maxlength="200" />
+										
+					<br/>
+					<h:outputLabel value="Contraseña " for="password" /><h:outputText value=" "></h:outputText>  
+					<h:inputSecret id="password" value="#{usuarioMB.password}" required="true" requiredMessage="Campo obligatorio" maxlength="200" />					
+					<br/>
+					
+					<h:commandButton  class="btn-success" type="submit" value="Login" action="#{usuarioMB.Login}" update="growl" />
+					<h:outputText value=" | "></h:outputText>
+					<h:link value="Registro" outcome="Registro"></h:link>
+					
+				
+				</h:form>
+				</p:panel>
+			</html>
